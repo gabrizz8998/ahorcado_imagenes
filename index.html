@@ -14,12 +14,12 @@
 <body>
   <div id="contenedor">
     <header id="cabecera">
-        <h1 id="titulo">Unidad 2 , ejercicio 7 </h1>
+        <h1 id="titulo">Unidad 2 , ejercicio 9 </h1>
 
       
     </header>
     <nav id="menu">
-      <p>Ahorcado</p>
+      <p>Ahorcado con imagenes</p>
 
     </nav>
     <section id="seccion">
@@ -29,7 +29,11 @@
         <input type="file" id="files" name="files[]" multiple style="color: #c610e6 ;font-size: 20px"/>
         <div id="contenedorImagen">     
         </div>
-    
+      </article>
+      <article>
+          <p>Imagen elegida: </p>
+          <div id="imagenElegida">     
+        </div>
       </article>
       <article>
         <label>Letra</label> <input type="text" id="letra_introducir" maxlength="1" size="1" onkeyup="introducirLetra()">
@@ -39,6 +43,7 @@
     </article>
     <article id="articulo">
         <label>Numero de errores</label> <input type="number" id="errores" name="errores" size="1" value="0">
+        <label>Palabras adivinadas</label> <input type="number" id="aciertos" name="aciertos" size="1" value="0">
     </article>
     </section>   
   </div>

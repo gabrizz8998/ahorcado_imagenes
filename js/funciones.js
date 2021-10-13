@@ -1,7 +1,10 @@
 var cadena_guiones = document.getElementById("guiones");
 var letra = document.getElementById("letra_introducir");
 var errores = document.getElementById("errores");
-var nimagen;
+var iaciertos = document.getElementById("aciertos");
+var nombre;
+var imagen;
+var aciertos=0;
 
 function SeleccionImagenes(evt) {
                        
@@ -31,19 +34,20 @@ function SeleccionImagenes(evt) {
                 // a la prpiedad src de un elemento html img, sevisualiza en el mismo
                              var cadena = escape(ElFichero.name);
                 var ppunto = cadena.indexOf(".");
-                nimagen = cadena.substring(0, ppunto)
+                var nimagen = cadena.substring(0, ppunto)
                 //  Creamos la IMAGEN
                 imm = document.createElement("img");
                 imm.src = e.target.result;
                 imm.alt = ElFichero.name;
-                
+                imm.width=100;
+                imm.height=100;
 //Podemos guardar el nombre de la imagen  a adivinar 
                                          //en esta propiedad alt
                 imm.title = nimagen;
-                
 
                 // Programamos en  evento clic sobre la imagen para jugar con ella
                 imm.onclick = copiaPalabra;
+                
                     document.getElementById('contenedorImagen').insertBefore(imm, null);
                 }
                                                
@@ -56,17 +60,20 @@ function SeleccionImagenes(evt) {
 document.getElementById('files').addEventListener('change', SeleccionImagenes, false);
 
 
-function copiaPalabra() {
-    
-    guiones = nimagen .replace(/[a-z]/gi, "-");
 
 
+function copiaPalabra(Event) {
+    letra.value = "";
+    var imagen=Event.target;
+    nombre=imagen.title;
+    guiones = nombre .replace(/[a-z]/gi, "-");
     cadena_guiones.value = guiones;
     letra.focus();
+    document.getElementById('imagenElegida').insertBefore(imagen, null);
 }
 
 
-function introducirLetra(Event) {
+function introducirLetra() {
     var sw = false;
     var guiones = cadena_guiones.value;
     var cadena = guiones;
@@ -76,25 +83,31 @@ function introducirLetra(Event) {
     var n=0;
     if( ascii> 64 && ascii < 91){
         if (guiones.length != 0) {
-            for (i = 0; i < nimagen.length; i++) {
-                if (nimagen.indexOf(leter, i) != -1) {
+            for (i = 0; i < nombre.length; i++) {
+                if (nombre.indexOf(leter, i) != -1) {
                     sw = true;
-                    let pos = nimagen.indexOf(leter, i);
-                    cadena = cadena.substring(0, pos) + leter + cadena.substring(pos + 1, nimagen.length);
+                    let pos = nombre.indexOf(leter, i);
+                    cadena = cadena.substring(0, pos) + leter + cadena.substring(pos + 1, nombre.length);
                     document.getElementById("guiones").value = cadena;
                     i = pos;
                 }       
             }
-    
             if (sw == false) {
                 errores.value++;
             }
-    
-            if(nimagen==cadena){
+            if(nombre==cadena){
+                aciertos++;
+                iaciertos.value=aciertos;
                 alert("Felicidades")
                 letra.blur();
+                document.getElementById('imagenElegida').removeChild(document.getElementById('imagenElegida').lastElementChild);
+                if(document.getElementById('contenedorImagen').childNodes.length - 1==0){
+                    
+                    alert("Inserta mas imagenes")
+                    letra.value = "";
+                }
+                letra.value = "";
             }
-
             letra.value = "";
         }
         else {
