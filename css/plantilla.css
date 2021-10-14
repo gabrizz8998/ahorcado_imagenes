@@ -12,7 +12,9 @@
  text-align: center;
  }
 
-
+img{
+  margin-right: 5px;
+}
  
  h1 {
     font: bold 14px verdana, sans-serif;

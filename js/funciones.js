@@ -61,11 +61,10 @@ document.getElementById('files').addEventListener('change', SeleccionImagenes, f
 
 function copiaPalabra(Event) {
     letra.value = "";
-    var imagen=Event.target;
+    imagen=Event.target;
     nombre=imagen.title;
     guiones = nombre .replace(/[a-z]/gi, "-");
     cadena_guiones.value = guiones;
-    
     document.getElementById('imagenElegida').insertBefore(imagen, null);
     letra.focus();
 }
@@ -97,13 +96,18 @@ function introducirLetra() {
                 aciertos++;
                 iaciertos.value=aciertos;
                 alert("Felicidades")
+                //subir la imagen al div de arriba sin onclick
+                imagen.onclick=null;
+                document.getElementById('contenedorImagen').insertBefore(imagen, null);
                 letra.blur();
-                document.getElementById('imagenElegida').removeChild(document.getElementById('imagenElegida').lastElementChild);
+
+                //Borrando la imagen
+                /*document.getElementById('imagenElegida').removeChild(document.getElementById('imagenElegida').lastElementChild);
                 if(document.getElementById('contenedorImagen').childNodes.length - 1==0){
                     
                     alert("Inserta mas imagenes")
                     letra.value = "";
-                }
+                }*/
                 letra.value = "";
             }
             letra.value = "";
