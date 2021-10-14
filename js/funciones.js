@@ -26,9 +26,6 @@ function SeleccionImagenes(evt) {
         
         reader.onload = (function (ElFichero) {
             return function (e) {
-               
-               
-              
                 //ElFichero.name contiene el nombre de los ficheros seleccionados
                 // e.target.result contiene el Data de la imagen,que asigándo el mismo
                 // a la prpiedad src de un elemento html img, sevisualiza en el mismo
@@ -68,8 +65,9 @@ function copiaPalabra(Event) {
     nombre=imagen.title;
     guiones = nombre .replace(/[a-z]/gi, "-");
     cadena_guiones.value = guiones;
-    letra.focus();
+    
     document.getElementById('imagenElegida').insertBefore(imagen, null);
+    letra.focus();
 }
 
 
